@@ -20,6 +20,7 @@ public class FrmCliente extends javax.swing.JFrame {
      */
     public FrmCliente() {
         initComponents();
+
     }
 
     /**
@@ -52,6 +53,7 @@ public class FrmCliente extends javax.swing.JFrame {
         txttelefono = new javax.swing.JTextField();
         jTextField12 = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
+        btnCargar = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -136,6 +138,15 @@ public class FrmCliente extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        btnCargar.setBackground(new java.awt.Color(255, 102, 255));
+        btnCargar.setForeground(new java.awt.Color(255, 255, 0));
+        btnCargar.setText("CARGAR");
+        btnCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,13 +184,16 @@ public class FrmCliente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(280, 280, 280)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField12)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(280, 280, 280)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)
+                        .addComponent(btnCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -217,7 +231,9 @@ public class FrmCliente extends javax.swing.JFrame {
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(8, 8, 8)
+                .addComponent(btnCargar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(124, Short.MAX_VALUE))
         );
@@ -236,6 +252,7 @@ public class FrmCliente extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
+        this.Eliminar();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnEviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEviarActionPerformed
@@ -254,6 +271,11 @@ public class FrmCliente extends javax.swing.JFrame {
         this.Actualizar();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
+    private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
+        // TODO add your handling code here:
+        this.mostrar(jtCliente, "select * from cliente");
+    }//GEN-LAST:event_btnCargarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -271,7 +293,8 @@ public class FrmCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error :" + e.toString());
         }
     }
-    private void Actualizar(){
+
+    private void Actualizar() {
         try {
             ClienteBeans cb = new ClienteBeans();
             cb.setId_cliente(Integer.parseInt(txtid_cliente.getText()));
@@ -282,7 +305,25 @@ public class FrmCliente extends javax.swing.JFrame {
             cb.setTelefono(txttelefono.getText());
             cb.actualizar_cliente();
             this.mostrar(jtCliente, "Select * from cliente");
-            JOptionPane.showMessageDialog(null, "la infomacion se guardo correcatamente ");
+            JOptionPane.showMessageDialog(null, "La Infomacion se ACTUALIZO correcatamente ");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error de transaccion :" + e.toString());
+        }
+    }
+
+    private void Eliminar() {
+        try {
+            ClienteBeans cb = new ClienteBeans();
+            cb.setId_cliente(Integer.parseInt(txtid_cliente.getText()));
+            cb.setCedula(txtcedula.getText());
+            cb.setNombres(txtnombre.getText());
+            cb.setApellido(txtapellidos.getText());
+            cb.setDireccion(txtdireccion.getText());
+            cb.setTelefono(txttelefono.getText());
+            cb.eliminar_cliente();
+            this.mostrar(jtCliente, "Select * from cliente");
+            JOptionPane.showMessageDialog(null, "La Infomacion se ELIMINO correcatamente ");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error de transaccion :" + e.toString());
@@ -300,13 +341,14 @@ public class FrmCliente extends javax.swing.JFrame {
             cb.setTelefono(txttelefono.getText());
             cb.insertar_cliente();
             this.mostrar(jtCliente, "Select * from cliente");
-            JOptionPane.showMessageDialog(null, "la infomacion se guardo correcatamente ");
+            JOptionPane.showMessageDialog(null, "La Infomacion se GUARDO correcatamente ");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error de transaccion :" + e.toString());
         }
     }
- // Enviamos un objeto Swing
+    // Enviamos un objeto Swing
+
     private void mostrar(javax.swing.JTable JT, String sql) { //
         try {
             ClienteBeans cb = new ClienteBeans();
@@ -321,14 +363,14 @@ public class FrmCliente extends javax.swing.JFrame {
             int cantcolumnas = rsMd.getColumnCount();
 
             // llenar la la tabla 
-            for (int i = 1; i < cantcolumnas+1; i++) {
+            for (int i = 1; i < cantcolumnas + 1; i++) {
                 modelo.addColumn(rsMd.getColumnLabel(i));
 
             }
             while (rs.next()) {   //par apoder visualizar valore de la tabla                 
                 Object[] columna = new Object[cantcolumnas];   /// Array para cada lifa de la lista 
                 for (int i = 0; i < cantcolumnas; i++) {
-                    columna[i] = rs.getObject(i+1);
+                    columna[i] = rs.getObject(i + 1);
 
                 }
                 modelo.addRow(columna);
@@ -340,21 +382,21 @@ public class FrmCliente extends javax.swing.JFrame {
         }
 
     }
-  
 
     private void MouseClick() {
         int fila = jtCliente.getSelectedRow();
-      
-        txtid_cliente.setText(jtCliente.getModel().getValueAt(fila,0).toString());
-        txtcedula.setText(jtCliente.getModel().getValueAt(fila,1).toString());
-        txtnombre.setText(jtCliente.getModel().getValueAt(fila,2).toString());
-        txtapellidos.setText(jtCliente.getModel().getValueAt(fila,3).toString());
-        txtdireccion.setText(jtCliente.getModel().getValueAt(fila,4).toString());
-        txttelefono.setText(jtCliente.getModel().getValueAt(fila,5).toString());
+
+        txtid_cliente.setText(jtCliente.getModel().getValueAt(fila, 0).toString());
+        txtcedula.setText(jtCliente.getModel().getValueAt(fila, 1).toString());
+        txtnombre.setText(jtCliente.getModel().getValueAt(fila, 2).toString());
+        txtapellidos.setText(jtCliente.getModel().getValueAt(fila, 3).toString());
+        txtdireccion.setText(jtCliente.getModel().getValueAt(fila, 4).toString());
+        txttelefono.setText(jtCliente.getModel().getValueAt(fila, 5).toString());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnCargar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnEviar;
     private javax.swing.JButton btnNuevo;

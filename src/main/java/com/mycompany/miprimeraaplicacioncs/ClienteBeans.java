@@ -100,8 +100,10 @@ public class ClienteBeans {
         bd.actualizaBD(cadena);
     }
 
-    public void eliminar_cliente() {
-    }
+    public void eliminar_cliente() throws SQLDataException {
+        String cadena ="  Delete from cliente where id_cliente ="+getId_cliente()+";" ;
+        bd.actualizaBD(cadena);
+   }
 
     public ResultSet consultaTabla(String sql) throws SQLException {
         return bd.consultaBD(sql);
