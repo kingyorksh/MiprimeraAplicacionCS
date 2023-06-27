@@ -16,6 +16,7 @@ public class MiprimeraAplicacionCS {
         FrmCliente fc= new FrmCliente();
         
         fc.setVisible(true);
+        //Comentario 
         
        
 

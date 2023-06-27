@@ -62,12 +62,20 @@ public class FrmCliente extends javax.swing.JFrame {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
                 {null, null, null, null, null, null}
             },
             new String [] {
                 "ID", "Cedula", "Nombres", "Apellidos", "Direccion", "Telefono"
             }
         ));
+        jtCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtClienteMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtCliente);
 
         lblid_cliente.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
@@ -114,6 +122,11 @@ public class FrmCliente extends javax.swing.JFrame {
 
         btnActualizar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         lbldireccion.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lbldireccion.setText("DIRECCION");
@@ -204,9 +217,9 @@ public class FrmCliente extends javax.swing.JFrame {
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         pack();
@@ -231,6 +244,16 @@ public class FrmCliente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnEviarActionPerformed
 
+    private void jtClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtClienteMouseClicked
+        // TODO add your handling code here:
+        this.MouseClick();
+    }//GEN-LAST:event_jtClienteMouseClicked
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+        this.Actualizar();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -246,6 +269,23 @@ public class FrmCliente extends javax.swing.JFrame {
             this.mostrar(jtCliente, "select * from cliente");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error :" + e.toString());
+        }
+    }
+    private void Actualizar(){
+        try {
+            ClienteBeans cb = new ClienteBeans();
+            cb.setId_cliente(Integer.parseInt(txtid_cliente.getText()));
+            cb.setCedula(txtcedula.getText());
+            cb.setNombres(txtnombre.getText());
+            cb.setApellido(txtapellidos.getText());
+            cb.setDireccion(txtdireccion.getText());
+            cb.setTelefono(txttelefono.getText());
+            cb.actualizar_cliente();
+            this.mostrar(jtCliente, "Select * from cliente");
+            JOptionPane.showMessageDialog(null, "la infomacion se guardo correcatamente ");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error de transaccion :" + e.toString());
         }
     }
 
@@ -266,7 +306,7 @@ public class FrmCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error de transaccion :" + e.toString());
         }
     }
-
+ // Enviamos un objeto Swing
     private void mostrar(javax.swing.JTable JT, String sql) { //
         try {
             ClienteBeans cb = new ClienteBeans();
@@ -281,14 +321,14 @@ public class FrmCliente extends javax.swing.JFrame {
             int cantcolumnas = rsMd.getColumnCount();
 
             // llenar la la tabla 
-            for (int i = 1; i < cantcolumnas; i++) {
+            for (int i = 1; i < cantcolumnas+1; i++) {
                 modelo.addColumn(rsMd.getColumnLabel(i));
 
             }
             while (rs.next()) {   //par apoder visualizar valore de la tabla                 
                 Object[] columna = new Object[cantcolumnas];   /// Array para cada lifa de la lista 
                 for (int i = 0; i < cantcolumnas; i++) {
-                    columna[i] = rs.getObject(i + 1);
+                    columna[i] = rs.getObject(i+1);
 
                 }
                 modelo.addRow(columna);
@@ -300,16 +340,17 @@ public class FrmCliente extends javax.swing.JFrame {
         }
 
     }
-    //FALTA MOSTAR DATOS  nimuto 40m
+  
 
     private void MouseClick() {
         int fila = jtCliente.getSelectedRow();
+      
         txtid_cliente.setText(jtCliente.getModel().getValueAt(fila,0).toString());
-        txtcedula.setText(jtCliente.getModel().getValueAt(fila,0).toString());
-        txtnombre.setText(jtCliente.getModel().getValueAt(fila,0).toString());
-        txtapellidos.setText(jtCliente.getModel().getValueAt(fila,0).toString());
-        txtdireccion.setText(jtCliente.getModel().getValueAt(fila,0).toString());
-        txttelefono.setText(jtCliente.getModel().getValueAt(fila,0).toString());
+        txtcedula.setText(jtCliente.getModel().getValueAt(fila,1).toString());
+        txtnombre.setText(jtCliente.getModel().getValueAt(fila,2).toString());
+        txtapellidos.setText(jtCliente.getModel().getValueAt(fila,3).toString());
+        txtdireccion.setText(jtCliente.getModel().getValueAt(fila,4).toString());
+        txttelefono.setText(jtCliente.getModel().getValueAt(fila,5).toString());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

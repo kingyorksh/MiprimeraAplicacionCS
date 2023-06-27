@@ -94,7 +94,10 @@ public class ClienteBeans {
 
     }
 
-    public void actualizar_cliente() {
+    public void actualizar_cliente() throws SQLException{   //linea de codigo para actializar desde el controlador
+        
+        String cadena = "update cliente set cedula = '"+ getCedula()+"', nombres = '"+getNombres()+"' , apellidos = '"+getApellido()+"' , direccion = '"+getDireccion()+"' , telefono = '"+getTelefono()+"' where id_cliente = "+getId_cliente()+" ;"; 
+        bd.actualizaBD(cadena);
     }
 
     public void eliminar_cliente() {
@@ -115,6 +118,7 @@ public class ClienteBeans {
             System.out.print(rs.getString(4) + " ");
             System.out.print(rs.getString(5) + " ");
             System.out.print(rs.getString(6) + " ");
+            System.out.print(rs.getString(7) + " ");
             System.out.println("");
         }
     }
