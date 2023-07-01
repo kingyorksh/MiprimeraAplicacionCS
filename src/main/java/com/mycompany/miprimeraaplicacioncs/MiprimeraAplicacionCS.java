@@ -4,7 +4,7 @@ package com.mycompany.miprimeraaplicacioncs;
  *
  * @author gm_ai
  */
-import com.mycompany.miprimeraaplicacioncs.Empleado.FrmEmpleado;
+import com.mycompany.Empleado.FrmEmpleado;
 
 
 public class MiprimeraAplicacionCS {

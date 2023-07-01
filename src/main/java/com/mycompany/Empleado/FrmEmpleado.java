@@ -1,5 +1,5 @@
 
-package com.mycompany.miprimeraaplicacioncs.Empleado;
+package com.mycompany.Empleado;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -82,38 +82,28 @@ public class FrmEmpleado extends javax.swing.JFrame {
         btnCargo.setText("CARGO");
 
         btnNuevo.setText("Nuevo");
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
-            }
+        btnNuevo.addActionListener((java.awt.event.ActionEvent evt) -> {
+            btnNuevoActionPerformed(evt);
         });
 
         btnEnviar.setText("Guardar");
-        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEnviarActionPerformed(evt);
-            }
+        btnEnviar.addActionListener((java.awt.event.ActionEvent evt) -> {
+            btnEnviarActionPerformed(evt);
         });
 
         btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
+        btnEliminar.addActionListener((java.awt.event.ActionEvent evt) -> {
+            btnEliminarActionPerformed(evt);
         });
 
         btnActualizar.setText("Actualizar");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
-            }
+        btnActualizar.addActionListener((java.awt.event.ActionEvent evt) -> {
+            btnActualizarActionPerformed(evt);
         });
 
         btnCargar.setText("CARGAR");
-        btnCargar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCargarActionPerformed(evt);
-            }
+        btnCargar.addActionListener((java.awt.event.ActionEvent evt) -> {
+            btnCargarActionPerformed(evt);
         });
 
         jtEmpleado.setModel(new javax.swing.table.DefaultTableModel(

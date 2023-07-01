@@ -1,4 +1,4 @@
-package Producto;
+package com.mycompany.Producto;
 
 import com.mycompany.miprimeraaplicacioncs.accesobd;
 import java.sql.ResultSet;
