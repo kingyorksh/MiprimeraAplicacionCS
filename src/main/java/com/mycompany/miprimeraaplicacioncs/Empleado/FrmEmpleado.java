@@ -1,4 +1,4 @@
-configpackage com.mycompany.miprimeraaplicacioncs.Empleado;
+package com.mycompany.miprimeraaplicacioncs.Empleado;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
