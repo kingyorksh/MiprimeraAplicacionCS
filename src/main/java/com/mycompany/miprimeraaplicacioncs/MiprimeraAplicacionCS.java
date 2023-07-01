@@ -5,8 +5,7 @@ package com.mycompany.miprimeraaplicacioncs;
  * @author gm_ai
  */
 import com.mycompany.miprimeraaplicacioncs.Empleado.FrmEmpleado;
-import java.sql.*;
-import java.util.Scanner;
+
 
 public class MiprimeraAplicacionCS {
 

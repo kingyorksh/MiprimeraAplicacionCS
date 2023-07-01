@@ -120,7 +120,7 @@ public class ClienteBeans {
             System.out.print(rs.getString(4) + " ");
             System.out.print(rs.getString(5) + " ");
             System.out.print(rs.getString(6) + " ");
-            System.out.print(rs.getString(7) + " ");
+            //System.out.print(rs.getString(7) + " ");
             System.out.println("");
         }
     }

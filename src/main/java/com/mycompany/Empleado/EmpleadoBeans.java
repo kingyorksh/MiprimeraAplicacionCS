@@ -28,7 +28,9 @@ public class EmpleadoBeans {
         bd = new accesobd("localhost", "root", "1234", "facturacion");
         bd.conectaBD();
     }
-
+    
+    // <editor-fold defaultstate="collapsed" desc="Metodos GET y SET"> 
+ 
     public int getId_empleado() {
         return id_empleado;
     }
@@ -75,10 +77,9 @@ public class EmpleadoBeans {
 
     public void setCargo(String Cargo) {
         this.Cargo = Cargo;
-    }
+    }// </editor-fold> 
 
     //en este apartado se agregaran los metodos par que funcione empleados 
-    
     //Incrementador de ID 
     public int incremento() throws SQLException {
         int incre = 1;
@@ -124,7 +125,6 @@ public class EmpleadoBeans {
             System.out.print(rs.getString(4) + " ");
             System.out.print(rs.getString(5) + " ");
             System.out.print(rs.getString(6) + " ");
-            System.out.print(rs.getString(7) + " ");
             System.out.println("");
         }
     }

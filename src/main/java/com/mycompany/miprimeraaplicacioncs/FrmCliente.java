@@ -10,7 +10,6 @@ package com.mycompany.miprimeraaplicacioncs;
  */
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.DefaultComboBoxModel;
 import java.sql.*;
 
 public class FrmCliente extends javax.swing.JFrame {
