@@ -4,13 +4,14 @@
  */
 package com.mycompany.Producto;
 
-import com.mycompany.Empleado.EmpleadoBeans;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import com.toedter.calendar.JCalendar;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -63,7 +64,7 @@ public class FrmProducto extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtJD_F_elaboracion = new com.toedter.calendar.JDateChooser();
-        txtJD_F_vencimineto = new com.toedter.calendar.JDateChooser();
+        txtJD_F_vencimiento = new com.toedter.calendar.JDateChooser();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -90,8 +91,18 @@ public class FrmProducto extends javax.swing.JFrame {
         });
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btmActualizar.setText("Actualizar");
         btmActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -182,8 +193,17 @@ public class FrmProducto extends javax.swing.JFrame {
         jLabel10.setText("Fecha Vencimineto");
 
         txtJD_F_elaboracion.setDateFormatString("yyyy-MM-dd");
+        txtJD_F_elaboracion.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                txtJD_F_elaboracionAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
-        txtJD_F_vencimineto.setDateFormatString("yyyy-MM-dd");
+        txtJD_F_vencimiento.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -222,7 +242,7 @@ public class FrmProducto extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPvp)
                             .addComponent(txtS_minimo)
-                            .addComponent(txtJD_F_vencimineto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(txtJD_F_vencimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -275,7 +295,7 @@ public class FrmProducto extends javax.swing.JFrame {
                                 .addComponent(jLabel9)
                                 .addComponent(jLabel10))
                             .addComponent(txtJD_F_elaboracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtJD_F_vencimineto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtJD_F_vencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                 .addContainerGap())
@@ -289,6 +309,9 @@ public class FrmProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        this.nuevo();
+    }//GEN-LAST:event_btnNuevoActionPerformed
+    private void nuevo() {
         try {
             ProductoBeans pb = new ProductoBeans();
             txtidProductos.setText("" + pb.incremento());//resicinimos todo lo que esta en el contenedor de la interfaz
@@ -299,27 +322,86 @@ public class FrmProducto extends javax.swing.JFrame {
             txtPvp.setText("");
             txtS_maximo.setText("");
             txtS_minimo.setText("");
-            
+
+            /*
             String fecha;
             SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-            fecha =  f.format(txtJD_F_elaboracion.getDate());
+            fecha = f.format(txtJD_F_elaboracion.getDate());
             txtJD_F_elaboracion.setDateFormatString(fecha);
-            
+            System.out.println("Si carga ");
             String fecha2;
             SimpleDateFormat f2 = new SimpleDateFormat("yyyy-MM-dd");
-            fecha2 =  f2.format(txtJD_F_vencimineto.getDate());
-            txtJD_F_vencimineto.setDateFormatString(fecha2);
-
-            //this.mostrar(JT_PRO, "select * from producto");
+            fecha2 = f2.format(txtJD_F_vencimiento.getDate());
+            txtJD_F_vencimiento.setDateFormatString(fecha2);*/
+            this.mostrar(JT_PRO, "select * from producto");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error :" + e.toString());
         }
-    }//GEN-LAST:event_btnNuevoActionPerformed
-
+    }
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        //this.mostrar(JT_PRO, "select * from productos");
+        this.mostrar(JT_PRO, "select * from producto");
     }//GEN-LAST:event_btnCargarActionPerformed
 
+    private void btmActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmActualizarActionPerformed
+        this.actualizar();
+    }//GEN-LAST:event_btmActualizarActionPerformed
+    JCalendar calendar = new JCalendar();
+    double pvp = 0;
+    double precio = 0;
+
+    private void actualizar() {
+        double pvp = 0;
+        double precio = 0;
+        try {
+            ProductoBeans cb = new ProductoBeans();
+
+            cb.setId_producto(Integer.parseInt(txtidProductos.getText()));
+            cb.setCod_producto(txtCodPorductos.getText());
+            cb.setNombre(txtNombre.getText());
+            cb.setDescripcion(txtDescripcion.getText());
+
+            try {
+                precio = Double.parseDouble(txtPrecio_Costo.getText());
+                //String numeroFormateado = String.format("%.2f", valor);
+                //resultado = Double.parseDouble(numeroFormateado);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Se predujo el error: " + e.getMessage());
+            }
+            cb.setPreciocosto(precio);
+            ; /// codigo para cating de los valore s
+            try {
+                pvp = Double.parseDouble(txtPvp.getText());
+                //String numeroFormateado = String.format("%.2f", valor);
+                //resultado = Double.parseDouble(numeroFormateado);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Se predujo el error: " + e.getMessage());
+            }
+            cb.setPvp(pvp);
+
+            cb.setStock_max(Integer.parseInt(txtS_maximo.getText()));
+            cb.setStock_min(Integer.parseInt(txtS_minimo.getText()));
+
+            System.out.println("SI CARGA");
+
+            String fecha2;
+            SimpleDateFormat f2 = new SimpleDateFormat("yyyy-MM-dd");
+            fecha2 = f2.format(txtJD_F_elaboracion.getDate());
+            cb.setFecha_elaboracion(fecha2);
+            System.out.println(fecha2);
+
+            System.out.println("SI CARGA 22");
+            String fecha;
+            fecha = f2.format(txtJD_F_vencimiento.getDate());
+            cb.setFecha_vencimiento(fecha);
+
+            cb.actualizar_producto();
+            this.mostrar(JT_PRO, "Select * from producto");
+            JOptionPane.showMessageDialog(null, "La Infomacion se ACTUALIZO correcatamente ");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error de transaccion :" + e.toString());
+        }
+    }
     private void JT_PROMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JT_PROMouseClicked
 
         int fila = JT_PRO.getSelectedRow();
@@ -332,57 +414,72 @@ public class FrmProducto extends javax.swing.JFrame {
         txtPvp.setText(JT_PRO.getModel().getValueAt(fila, 5).toString());
         txtS_maximo.setText(JT_PRO.getModel().getValueAt(fila, 6).toString());
         txtS_minimo.setText(JT_PRO.getModel().getValueAt(fila, 7).toString());
-        txtJD_F_elaboracion.setDate((Date) JT_PRO.getValueAt(fila, 8));
-        txtJD_F_vencimineto.setDate((Date)JT_PRO.getModel().getValueAt(fila, 9));
+        //txtJD_F_elaboracion.setDateFormatString(JT_PRO.getModel().getValueAt(fila, 8).toString());
+        //txtJD_F_vencimiento.setDateFormatString(JT_PRO.getModel().getValueAt(fila, 9).toString());
 
 
     }//GEN-LAST:event_JT_PROMouseClicked
 
-    private void btmActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmActualizarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        this.enviar();
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        this.Eliminar();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtJD_F_elaboracionAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_txtJD_F_elaboracionAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtJD_F_elaboracionAncestorAdded
+    private void Eliminar() {
         try {
             ProductoBeans cb = new ProductoBeans();
+
             cb.setId_producto(Integer.parseInt(txtidProductos.getText()));
-            cb.setCod_producto(txtCodPorductos.getText());
-            cb.setNombre(txtNombre.getText());
-            cb.setDescripcion(txtDescripcion.getText());
-            double precio = 0;
-            try {
-                 precio = Double.parseDouble(txtPrecio_Costo.getText());
-                                        //String numeroFormateado = String.format("%.2f", valor);
-                                        //resultado = Double.parseDouble(numeroFormateado);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Se predujo el error: " + e.getMessage());
-            }
-            cb.setPreciocosto(precio);
-            
-            double pvp = 0; /// codigo para cating de los valore s
-            try {
-                 pvp = Double.parseDouble(txtPrecio_Costo.getText());
-                                        //String numeroFormateado = String.format("%.2f", valor);
-                                        //resultado = Double.parseDouble(numeroFormateado);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Se predujo el error: " + e.getMessage());
-            }
-            cb.setPreciocosto(pvp);
-            
-            cb.setStock_max(Integer.parseInt(txtS_maximo.getText()));
-            cb.setStock_min(Integer.parseInt(txtS_minimo.getText()));
-            
-            String fecha;
-            java.util.Date date = new java.util.Date();
-            SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-            
-            fecha =  f.format(txtJD_F_elaboracion.getDate());
-            cb.setFecha_elaboracion(fecha);
-            
-            cb.actualizar_producto();
+
+            cb.eliminar_producto();
             this.mostrar(JT_PRO, "Select * from producto");
-            JOptionPane.showMessageDialog(null, "La Infomacion se ACTUALIZO correcatamente ");
+            JOptionPane.showMessageDialog(null, "La Infomacion se ELIMINO correcatamente ");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error de transaccion :" + e.toString());
         }
-    }//GEN-LAST:event_btmActualizarActionPerformed
+    }
+
+    private void enviar() {
+        try {
+            ProductoBeans cb = new ProductoBeans();
+
+            cb.setId_producto(Integer.parseInt(txtidProductos.getText()));
+            cb.setCod_producto(txtCodPorductos.getText());
+            cb.setNombre(txtNombre.getText());
+            cb.setDescripcion(txtDescripcion.getText());
+            cb.setPreciocosto(Double.parseDouble(txtPrecio_Costo.getText()));
+            cb.setPvp(Double.parseDouble(txtPvp.getText()));
+            cb.setStock_max(Integer.parseInt(txtS_maximo.getText()));
+            cb.setStock_min(Integer.parseInt(txtS_minimo.getText()));
+            System.out.println("SI CARGA");
+
+            String fecha2;
+            SimpleDateFormat f2 = new SimpleDateFormat("yyyy-MM-dd");
+            fecha2 = f2.format(txtJD_F_elaboracion.getDate());
+            cb.setFecha_elaboracion(fecha2);
+            System.out.println(fecha2);
+
+            System.out.println("SI CARGA 22");
+            String fecha;
+            fecha = f2.format(txtJD_F_vencimiento.getDate());
+            cb.setFecha_vencimiento(fecha);
+
+            //cb.setFecha_vencimiento(txtJD_F_vencimiento.getDateFormatString());
+            cb.insertar_producto();
+            this.mostrar(JT_PRO, "Select * from producto");
+            JOptionPane.showMessageDialog(null, "La Infomacion se GUARDO correcatamente ");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error de transaccion :" + e.toString());
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -420,8 +517,7 @@ public class FrmProducto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "error " + e.toString());
         }
 
-    
-
+    }
     // Mouse click
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -448,7 +544,7 @@ public class FrmProducto extends javax.swing.JFrame {
     private javax.swing.JTextField txtCodPorductos;
     private javax.swing.JTextArea txtDescripcion;
     private com.toedter.calendar.JDateChooser txtJD_F_elaboracion;
-    private com.toedter.calendar.JDateChooser txtJD_F_vencimineto;
+    private com.toedter.calendar.JDateChooser txtJD_F_vencimiento;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio_Costo;
     private javax.swing.JTextField txtPvp;

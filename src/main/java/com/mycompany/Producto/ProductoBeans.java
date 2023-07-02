@@ -24,8 +24,8 @@ public class ProductoBeans {
     private double pvp;
     private int stock_max;
     private int stock_min;
-    private Date fecha_elaboracion;
-    private Date fecha_vencimiento;
+    private String fecha_elaboracion;
+    private String fecha_vencimiento;
     private final accesobd bd;
 
 
@@ -99,29 +99,33 @@ public class ProductoBeans {
         this.stock_min = stock_min;
     }
 
-    public Date getFecha_elaboracion() {
+    public String getFecha_elaboracion() {
         return fecha_elaboracion;
     }
 
-    public void setFecha_elaboracion(Date fecha_elaboracion) {
+    public void setFecha_elaboracion(String fecha_elaboracion) {
         this.fecha_elaboracion = fecha_elaboracion;
     }
 
-    public Date getFecha_vencimiento() {
+    public String getFecha_vencimiento() {
         return fecha_vencimiento;
     }
 
-    public void setFecha_vencimiento(Date fecha_vencimiento) {
+    public void setFecha_vencimiento(String fecha_vencimiento) {
         this.fecha_vencimiento = fecha_vencimiento;
-    }// </editor-fold> 
+    }
+
+    
+    
+   // </editor-fold> 
     
     public int incremento() throws SQLException {
-        int incre = 10;
+        int incre = 1;
         ResultSet rs;
         rs = bd.consultaBD("select max(id_producto) as num from producto;");
 
         if (rs.next()) {
-            incre = rs.getInt(1) + 3;
+            incre = rs.getInt(1) + 1;
         } else {
             incre = 10;
         }
@@ -132,7 +136,7 @@ public class ProductoBeans {
     public void insertar_producto() throws SQLException {
 
         String cadena = "insert into producto values ('" + incremento() + "','" + getCod_producto() + "','" + getNombre() + "','" + getDescripcion()+ "','" 
-                + getPreciocosto()+ "','" + getPvp() + "','" + getStock_max() + "','" + getStock_min() + "','" + getFecha_elaboracion() + "','" + fecha_vencimiento + "')";
+                + getPreciocosto()+ "','" + getPvp() + "','" + getStock_max() + "','" + getStock_min() + "','" + getFecha_elaboracion() + "','" + getFecha_vencimiento() + "')";
         bd.actualizaBD(cadena);
 
     }
@@ -140,11 +144,11 @@ public class ProductoBeans {
      public void actualizar_producto() throws SQLException{   //linea de codigo para actializar desde el controlador
         
         String cadena = "update producto set cod_producto = '"+getCod_producto()+"' , nombre = '"+getNombre()+"' , descripcion = '"+getDescripcion()+"' , preciocosto = '"+getPreciocosto()+"', pvp = '"
-                +getPvp()+"', stock_maximo = '"+getStock_max()+"', stock_minimo= '"+getStock_min()+"', fecha_elaboracion = '"+getFecha_elaboracion()+"', fecha_vencimineto = '"+getFecha_vencimiento()+"' where id_producto = "+getId_producto()+" ;"; 
+                +getPvp()+"', stock_maximo = '"+getStock_max()+"', stock_minimo= '"+getStock_min()+"', fecha_elaboracion = '"+getFecha_elaboracion()+"', fecha_vencimineto = '"+getFecha_vencimiento()+"' where id_producto = "+getId_producto()+";"; 
         bd.actualizaBD(cadena);
     }
     public void eliminar_producto() throws SQLDataException {
-        String cadena ="  Delete from empleado where id_producto ="+getId_producto()+";" ;
+        String cadena ="  Delete from producto where id_producto ="+getId_producto()+";" ;
         bd.actualizaBD(cadena);
    }
     public ResultSet consultaTabla(String sql) throws SQLException {
@@ -171,8 +175,7 @@ public class ProductoBeans {
         }
     }
 
-    void setFecha_elaboracion(String fecha) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
+
     
 }

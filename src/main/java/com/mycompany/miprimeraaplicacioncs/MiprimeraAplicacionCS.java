@@ -14,13 +14,15 @@ public class MiprimeraAplicacionCS {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello World!");
         System.out.println("********************************************************************");
-        //FrmCliente fc= new FrmCliente();
-        //FrmCliente fe = new FrmCliente();
-        //fc.setVisible(true);
-        //fe.setVisible(true);
+        FrmCliente fc= new FrmCliente();
+        FrmCliente fe = new FrmCliente();
+        fc.setVisible(true);
+        fe.setVisible(true);
        
         FrmProducto fp = new FrmProducto();
         fp.setVisible(true);
+        fp.setLocationRelativeTo(null);
+        
         
        
 
