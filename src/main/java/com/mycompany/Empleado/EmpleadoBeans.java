@@ -28,7 +28,7 @@ public class EmpleadoBeans {
         bd = new accesobd("localhost", "root", "1234", "facturacion");
         bd.conectaBD();
     }
-
+// <editor-fold defaultstate="collapsed" desc="GETER Y SETER">
     public int getId_empleado() {
         return id_empleado;
     }
@@ -75,7 +75,7 @@ public class EmpleadoBeans {
 
     public void setCargo(String Cargo) {
         this.Cargo = Cargo;
-    }
+    } // </editor-fold> 
 
     //en este apartado se agregaran los metodos par que funcione empleados 
     

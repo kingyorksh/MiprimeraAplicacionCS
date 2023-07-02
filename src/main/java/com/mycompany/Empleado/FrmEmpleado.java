@@ -1,4 +1,4 @@
-package com.mycompany.miprimeraaplicacioncs.Empleado;
+package com.mycompany.Empleado;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -66,7 +66,7 @@ public class FrmEmpleado extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("ID_EMPLEADO");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -251,7 +251,6 @@ public class FrmEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCargarActionPerformed
 
     /**
-     * @param args the command line arguments
      */
       
     public void nuevo(){

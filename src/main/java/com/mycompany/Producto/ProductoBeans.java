@@ -113,11 +113,7 @@ public class ProductoBeans {
 
     public void setFecha_vencimiento(String fecha_vencimiento) {
         this.fecha_vencimiento = fecha_vencimiento;
-    }
-
-    
-    
-   // </editor-fold> 
+    }// </editor-fold> 
     
     public int incremento() throws SQLException {
         int incre = 1;
