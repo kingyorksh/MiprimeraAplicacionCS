@@ -4,7 +4,7 @@
  */
 package com.mycompany.Producto;
 
-
+import com.mycompany.Empleado.EmpleadoBeans;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import javax.swing.JOptionPane;
