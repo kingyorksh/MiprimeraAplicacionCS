@@ -166,8 +166,13 @@ public class ProductoBeans {
             System.out.print(rs.getInt(8) + " ");
             System.out.print(rs.getDate(9) + " ");
             System.out.print(rs.getDate(10) + " ");
+            System.out.print(rs.getDate(11) + " ");
             System.out.println("");
         }
+    }
+
+    void setFecha_elaboracion(String fecha) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

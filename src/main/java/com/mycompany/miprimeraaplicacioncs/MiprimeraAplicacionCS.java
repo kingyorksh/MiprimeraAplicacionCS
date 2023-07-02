@@ -5,6 +5,8 @@ package com.mycompany.miprimeraaplicacioncs;
  * @author gm_ai
  */
 import com.mycompany.Empleado.EmpleadoBeans;
+import com.mycompany.Producto.FrmProducto;
+import com.mycompany.Producto.ProductoBeans;
 
 
 public class MiprimeraAplicacionCS {
@@ -13,11 +15,12 @@ public class MiprimeraAplicacionCS {
         System.out.println("Hello World!");
         System.out.println("********************************************************************");
         //FrmCliente fc= new FrmCliente();
-        FrmCliente fe = new FrmCliente();
+        //FrmCliente fe = new FrmCliente();
         //fc.setVisible(true);
-        fe.setVisible(true);
+        //fe.setVisible(true);
        
-        //Comentario 
+        FrmProducto fp = new FrmProducto();
+        fp.setVisible(true);
         
        
 

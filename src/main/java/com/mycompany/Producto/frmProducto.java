@@ -7,6 +7,8 @@ package com.mycompany.Producto;
 import com.mycompany.Empleado.EmpleadoBeans;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -57,11 +59,11 @@ public class FrmProducto extends javax.swing.JFrame {
         txtS_maximo = new javax.swing.JTextField();
         txtS_minimo = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        JT_Productos = new javax.swing.JTable();
+        JT_PRO = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
-        txtF_Elaboracion = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        txtF_vencimineto = new javax.swing.JTextField();
+        txtJD_F_elaboracion = new com.toedter.calendar.JDateChooser();
+        txtJD_F_vencimineto = new com.toedter.calendar.JDateChooser();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -157,7 +159,7 @@ public class FrmProducto extends javax.swing.JFrame {
 
         jLabel8.setText("Strock Minimo");
 
-        JT_Productos.setModel(new javax.swing.table.DefaultTableModel(
+        JT_PRO.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -168,22 +170,20 @@ public class FrmProducto extends javax.swing.JFrame {
                 "ID", "Codigo", "Producto", "Descripcion", "Precio/Costo", "PVP", "Stock Maximo", "Stock Minimo", "Elaborado", "Vencimiento"
             }
         ));
-        JT_Productos.addMouseListener(new java.awt.event.MouseAdapter() {
+        JT_PRO.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JT_ProductosMouseClicked(evt);
+                JT_PROMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(JT_Productos);
+        jScrollPane2.setViewportView(JT_PRO);
 
         jLabel9.setText("Fecha Elaboracion");
 
-        txtF_Elaboracion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtF_ElaboracionActionPerformed(evt);
-            }
-        });
-
         jLabel10.setText("Fecha Vencimineto");
+
+        txtJD_F_elaboracion.setDateFormatString("yyyy-MM-dd");
+
+        txtJD_F_vencimineto.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -212,7 +212,7 @@ public class FrmProducto extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtPrecio_Costo)
                             .addComponent(txtS_maximo, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                            .addComponent(txtF_Elaboracion))
+                            .addComponent(txtJD_F_elaboracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -222,7 +222,7 @@ public class FrmProducto extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPvp)
                             .addComponent(txtS_minimo)
-                            .addComponent(txtF_vencimineto))))
+                            .addComponent(txtJD_F_vencimineto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -270,12 +270,13 @@ public class FrmProducto extends javax.swing.JFrame {
                             .addComponent(txtS_maximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtS_minimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(txtF_Elaboracion)
-                            .addComponent(jLabel10)
-                            .addComponent(txtF_vencimineto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel10))
+                            .addComponent(txtJD_F_elaboracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtJD_F_vencimineto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -298,50 +299,53 @@ public class FrmProducto extends javax.swing.JFrame {
             txtPvp.setText("");
             txtS_maximo.setText("");
             txtS_minimo.setText("");
-            txtF_Elaboracion.setText("");
-            txtF_vencimineto.setText("");
+            
+            String fecha;
+            SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+            fecha =  f.format(txtJD_F_elaboracion.getDate());
+            txtJD_F_elaboracion.setDateFormatString(fecha);
+            
+            String fecha2;
+            SimpleDateFormat f2 = new SimpleDateFormat("yyyy-MM-dd");
+            fecha2 =  f2.format(txtJD_F_vencimineto.getDate());
+            txtJD_F_vencimineto.setDateFormatString(fecha2);
 
-            this.mostrar(JT_Productos, "select * from producto");
+            //this.mostrar(JT_PRO, "select * from producto");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error :" + e.toString());
         }
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        // TODO add your handling code here:
+        //this.mostrar(JT_PRO, "select * from productos");
     }//GEN-LAST:event_btnCargarActionPerformed
 
-    private void txtF_ElaboracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtF_ElaboracionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtF_ElaboracionActionPerformed
+    private void JT_PROMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JT_PROMouseClicked
 
-    private void JT_ProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JT_ProductosMouseClicked
+        int fila = JT_PRO.getSelectedRow();
 
-        int fila = JT_Productos.getSelectedRow();
-
-        txtidProductos.setText(JT_Productos.getModel().getValueAt(fila, 0).toString());
-        txtCodPorductos.setText(JT_Productos.getModel().getValueAt(fila, 1).toString());
-        txtNombre.setText(JT_Productos.getModel().getValueAt(fila, 2).toString());
-        txtDescripcion.setText(JT_Productos.getModel().getValueAt(fila, 3).toString());
-        txtPrecio_Costo.setText(JT_Productos.getModel().getValueAt(fila, 4).toString());
-        txtPvp.setText(JT_Productos.getModel().getValueAt(fila, 5).toString());
-        txtS_maximo.setText(JT_Productos.getModel().getValueAt(fila, 6).toString());
-        txtS_minimo.setText(JT_Productos.getModel().getValueAt(fila, 7).toString());
-        txtF_Elaboracion.setText(JT_Productos.getModel().getValueAt(fila, 8).toString());
-        txtF_vencimineto.setText(JT_Productos.getModel().getValueAt(fila, 9).toString());
+        txtidProductos.setText(JT_PRO.getModel().getValueAt(fila, 0).toString());
+        txtCodPorductos.setText(JT_PRO.getModel().getValueAt(fila, 1).toString());
+        txtNombre.setText(JT_PRO.getModel().getValueAt(fila, 2).toString());
+        txtDescripcion.setText(JT_PRO.getModel().getValueAt(fila, 3).toString());
+        txtPrecio_Costo.setText(JT_PRO.getModel().getValueAt(fila, 4).toString());
+        txtPvp.setText(JT_PRO.getModel().getValueAt(fila, 5).toString());
+        txtS_maximo.setText(JT_PRO.getModel().getValueAt(fila, 6).toString());
+        txtS_minimo.setText(JT_PRO.getModel().getValueAt(fila, 7).toString());
+        txtJD_F_elaboracion.setDate((Date) JT_PRO.getValueAt(fila, 8));
+        txtJD_F_vencimineto.setDate((Date)JT_PRO.getModel().getValueAt(fila, 9));
 
 
-    }//GEN-LAST:event_JT_ProductosMouseClicked
+    }//GEN-LAST:event_JT_PROMouseClicked
 
     private void btmActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmActualizarActionPerformed
-        /*
         try {
             ProductoBeans cb = new ProductoBeans();
             cb.setId_producto(Integer.parseInt(txtidProductos.getText()));
             cb.setCod_producto(txtCodPorductos.getText());
             cb.setNombre(txtNombre.getText());
             cb.setDescripcion(txtDescripcion.getText());
-            double precio;
+            double precio = 0;
             try {
                  precio = Double.parseDouble(txtPrecio_Costo.getText());
                                         //String numeroFormateado = String.format("%.2f", valor);
@@ -351,7 +355,7 @@ public class FrmProducto extends javax.swing.JFrame {
             }
             cb.setPreciocosto(precio);
             
-            double pvp; /// codigo para cating de los valore s
+            double pvp = 0; /// codigo para cating de los valore s
             try {
                  pvp = Double.parseDouble(txtPrecio_Costo.getText());
                                         //String numeroFormateado = String.format("%.2f", valor);
@@ -363,14 +367,21 @@ public class FrmProducto extends javax.swing.JFrame {
             
             cb.setStock_max(Integer.parseInt(txtS_maximo.getText()));
             cb.setStock_min(Integer.parseInt(txtS_minimo.getText()));
-            cb.setCargo(txtCargo.getText());
-            cb.actualizar_empleado();
-            this.mostrar(jtEmpleado, "Select * from empleado");
+            
+            String fecha;
+            java.util.Date date = new java.util.Date();
+            SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+            
+            fecha =  f.format(txtJD_F_elaboracion.getDate());
+            cb.setFecha_elaboracion(fecha);
+            
+            cb.actualizar_producto();
+            this.mostrar(JT_PRO, "Select * from producto");
             JOptionPane.showMessageDialog(null, "La Infomacion se ACTUALIZO correcatamente ");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error de transaccion :" + e.toString());
-        }*/
+        }
     }//GEN-LAST:event_btmActualizarActionPerformed
 
     /**
@@ -409,17 +420,12 @@ public class FrmProducto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "error " + e.toString());
         }
 
-    }
     
-    public void fecha() {
-        
-        
-    }
 
     // Mouse click
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable JT_Productos;
+    private javax.swing.JTable JT_PRO;
     private javax.swing.JButton btmActualizar;
     private javax.swing.JButton btnCargar;
     private javax.swing.JButton btnEliminar;
@@ -441,8 +447,8 @@ public class FrmProducto extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtCodPorductos;
     private javax.swing.JTextArea txtDescripcion;
-    private javax.swing.JTextField txtF_Elaboracion;
-    private javax.swing.JTextField txtF_vencimineto;
+    private com.toedter.calendar.JDateChooser txtJD_F_elaboracion;
+    private com.toedter.calendar.JDateChooser txtJD_F_vencimineto;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio_Costo;
     private javax.swing.JTextField txtPvp;
