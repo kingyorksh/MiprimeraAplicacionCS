@@ -4,7 +4,7 @@
  */
 package com.mycompany.Producto;
 
-import com.mycompany.Empleado.EmpleadoBeans;
+
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import javax.swing.JOptionPane;
@@ -317,7 +317,7 @@ public class FrmProducto extends javax.swing.JFrame {
 
     private void JT_ProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JT_ProductosMouseClicked
 
-        int fila = JT_Productos.getSelectedRow(); 
+        int fila = JT_Productos.getSelectedRow();
 
         txtidProductos.setText(JT_Productos.getModel().getValueAt(fila, 0).toString());
         txtCodPorductos.setText(JT_Productos.getModel().getValueAt(fila, 1).toString());
@@ -329,19 +329,40 @@ public class FrmProducto extends javax.swing.JFrame {
         txtS_minimo.setText(JT_Productos.getModel().getValueAt(fila, 7).toString());
         txtF_Elaboracion.setText(JT_Productos.getModel().getValueAt(fila, 8).toString());
         txtF_vencimineto.setText(JT_Productos.getModel().getValueAt(fila, 9).toString());
-        
+
 
     }//GEN-LAST:event_JT_ProductosMouseClicked
 
     private void btmActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmActualizarActionPerformed
+        /*
         try {
             ProductoBeans cb = new ProductoBeans();
             cb.setId_producto(Integer.parseInt(txtidProductos.getText()));
             cb.setCod_producto(txtCodPorductos.getText());
-            cb.setNombres(txtNombre.getText());
-            cb.setApellidos(txtApellido.getText());
-            cb.setDireccion(txtDireccion.getText());
-            cb.setTelefono(txtTelefono.getText());
+            cb.setNombre(txtNombre.getText());
+            cb.setDescripcion(txtDescripcion.getText());
+            double precio;
+            try {
+                 precio = Double.parseDouble(txtPrecio_Costo.getText());
+                                        //String numeroFormateado = String.format("%.2f", valor);
+                                        //resultado = Double.parseDouble(numeroFormateado);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Se predujo el error: " + e.getMessage());
+            }
+            cb.setPreciocosto(precio);
+            
+            double pvp; /// codigo para cating de los valore s
+            try {
+                 pvp = Double.parseDouble(txtPrecio_Costo.getText());
+                                        //String numeroFormateado = String.format("%.2f", valor);
+                                        //resultado = Double.parseDouble(numeroFormateado);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Se predujo el error: " + e.getMessage());
+            }
+            cb.setPreciocosto(pvp);
+            
+            cb.setStock_max(Integer.parseInt(txtS_maximo.getText()));
+            cb.setStock_min(Integer.parseInt(txtS_minimo.getText()));
             cb.setCargo(txtCargo.getText());
             cb.actualizar_empleado();
             this.mostrar(jtEmpleado, "Select * from empleado");
@@ -349,7 +370,7 @@ public class FrmProducto extends javax.swing.JFrame {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error de transaccion :" + e.toString());
-        }
+        }*/
     }//GEN-LAST:event_btmActualizarActionPerformed
 
     /**
@@ -388,6 +409,11 @@ public class FrmProducto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "error " + e.toString());
         }
 
+    }
+    
+    public void fecha() {
+        
+        
     }
 
     // Mouse click

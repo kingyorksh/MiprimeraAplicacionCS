@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.util.Date;
-import com.toedter.calendar.JDateChooser;
+
 
 
 
@@ -118,7 +118,7 @@ public class ProductoBeans {
     public int incremento() throws SQLException {
         int incre = 10;
         ResultSet rs;
-        rs = bd.consultaBD("select max(id_empleado) as num from empleado;");
+        rs = bd.consultaBD("select max(id_producto) as num from producto;");
 
         if (rs.next()) {
             incre = rs.getInt(1) + 3;

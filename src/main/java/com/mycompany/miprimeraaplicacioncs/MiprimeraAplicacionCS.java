@@ -4,7 +4,7 @@ package com.mycompany.miprimeraaplicacioncs;
  *
  * @author gm_ai
  */
-import com.mycompany.miprimeraaplicacioncs.Empleado.EmpleadoBeans;
+import com.mycompany.Empleado.EmpleadoBeans;
 
 
 public class MiprimeraAplicacionCS {
@@ -13,7 +13,7 @@ public class MiprimeraAplicacionCS {
         System.out.println("Hello World!");
         System.out.println("********************************************************************");
         //FrmCliente fc= new FrmCliente();
-        EmpleadoBeans fe = new EmpleadoBeans();
+        FrmCliente fe = new FrmCliente();
         //fc.setVisible(true);
         fe.setVisible(true);
        
