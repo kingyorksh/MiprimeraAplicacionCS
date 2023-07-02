@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.Empleado;
+package com.mycompany.miprimeraaplicacioncs.Empleado;
 
 import com.mycompany.miprimeraaplicacioncs.accesobd;
 import java.sql.ResultSet;
@@ -28,9 +28,7 @@ public class EmpleadoBeans {
         bd = new accesobd("localhost", "root", "1234", "facturacion");
         bd.conectaBD();
     }
-    
-    // <editor-fold defaultstate="collapsed" desc="Metodos GET y SET"> 
- 
+
     public int getId_empleado() {
         return id_empleado;
     }
@@ -77,9 +75,10 @@ public class EmpleadoBeans {
 
     public void setCargo(String Cargo) {
         this.Cargo = Cargo;
-    }// </editor-fold> 
+    }
 
     //en este apartado se agregaran los metodos par que funcione empleados 
+    
     //Incrementador de ID 
     public int incremento() throws SQLException {
         int incre = 1;
@@ -125,8 +124,13 @@ public class EmpleadoBeans {
             System.out.print(rs.getString(4) + " ");
             System.out.print(rs.getString(5) + " ");
             System.out.print(rs.getString(6) + " ");
+            System.out.print(rs.getString(7) + " ");
             System.out.println("");
         }
+    }
+
+    public void setVisible(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
