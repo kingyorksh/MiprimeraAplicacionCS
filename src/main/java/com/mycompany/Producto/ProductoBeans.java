@@ -166,7 +166,7 @@ public class ProductoBeans {
             System.out.print(rs.getInt(8) + " ");
             System.out.print(rs.getDate(9) + " ");
             System.out.print(rs.getDate(10) + " ");
-            System.out.print(rs.getDate(11) + " ");
+         
             System.out.println("");
         }
     }

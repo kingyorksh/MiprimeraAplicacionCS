@@ -9,19 +9,23 @@ import Vista.Login;
 
 
 
+
+
+
 public class MiprimeraAplicacionCS {
 
     public static void main(String[] args) throws Exception {
         System.out.println("Hello World!");
         System.out.println("********************************************************************");
-        
+        //FrmFactura n = new FrmFactura();
+        //n.setVisible(true);
        
         Login nuevo = new Login();
         nuevo.setVisible(true);
         nuevo.setLocationRelativeTo(null);
         
-       /*
-        FrmProducto fp = new FrmProducto();
+       
+        /*FrmProducto fp = new FrmProducto();
         fp.setVisible(true);
         fp.setLocationRelativeTo(null);*/
         

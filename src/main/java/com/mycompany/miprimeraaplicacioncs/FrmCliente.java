@@ -8,6 +8,8 @@ package com.mycompany.miprimeraaplicacioncs;
  *
  * @author gm_ai
  */
+import com.mycompany.miprimeraaplicacioncs.ClienteBeans;
+import com.mycompany.miprimeraaplicacioncs.ClienteBeans;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;

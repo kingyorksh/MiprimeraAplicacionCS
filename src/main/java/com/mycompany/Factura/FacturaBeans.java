@@ -6,6 +6,7 @@ package com.mycompany.Factura;
 
 import com.mycompany.miprimeraaplicacioncs.accesobd;
 import java.sql.ResultSet;
+import java.sql.SQLDataException;
 import java.sql.SQLException;
 
 /**
@@ -21,10 +22,11 @@ public class FacturaBeans {
     private double IVA;
     private double total;
     private String numero;
-    private private final accesobd bd;
+    private final accesobd bd;
 
-    public FacturaBeans() {
-        
+    public FacturaBeans() throws Exception {
+        bd = new accesobd("localhost", "root", "1234", "facturacion");
+        bd.conectaBD();
     }
 // <editor-fold defaultstate="collapsed" desc="GETER Y SETER">
     public int getId_factura() {
@@ -94,7 +96,7 @@ public class FacturaBeans {
     public int incremento() throws SQLException {
         int incre = 1;
         ResultSet rs;
-        rs = bd.consultaBD("select max(id_producto) as num from producto;");
+        rs = bd.consultaBD("select max(id_factura) as num from factura;");
 
         if (rs.next()) {
             incre = rs.getInt(1) + 1;
@@ -105,5 +107,27 @@ public class FacturaBeans {
         return incre;
     }
     
+    public void insertar_factura() throws SQLException {
+
+        String cadena = "insert into factura values ('" + incremento() + "','" + getId_cliente() + "','" + getId_empleado()+ "','" 
+                + getFecha()+ "','" + getSubtota() + "','" + getIVA() + "','" + getTotal() + "','" + getNumero()+"')";
+        bd.actualizaBD(cadena);
+
+    }
+    
+    public void actualizar_factura() throws SQLException{   //linea de codigo para actializar desde el controlador
+        
+        String cadena = "update factura set id_factura = '"+getId_factura()+"' , id_cliente = '"+getId_cliente()+"' , id_empleado = '"+getId_empleado()+"' , fecha = '"+getFecha()+"', subtotal = '"
+                +getSubtota()+"', iva = '"+getIVA()+"', total= '"+getTotal()+"', numero = '"+getNumero()+"' where id_factura = "+getId_factura()+";"; 
+        bd.actualizaBD(cadena);
+    }
+    
+    public void eliminar_factura() throws SQLDataException {
+        String cadena ="  Delete from factura where id_factura ="+getId_factura()+";" ;
+        bd.actualizaBD(cadena);
+   }
+    public ResultSet consultaTabla(String sql) throws SQLException {
+        return bd.consultaBD(sql);
+    }
     
 }
